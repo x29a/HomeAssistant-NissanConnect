@@ -53,6 +53,7 @@ class ForceUpdateButton(KamereonEntity, ButtonEntity):
         updated = await loop.run_in_executor(None, self.vehicle.refresh_fetch)
         if updated:
             self.coordinator.async_set_updated_data(True)
+            await self.coordinator.async_refresh()
 
 class HornLightsButtons(KamereonEntity, ButtonEntity):
     def __init__(self, coordinator, vehicle, translation_key, icon, action):
